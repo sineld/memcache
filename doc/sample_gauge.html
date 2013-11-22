@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <style type="text/css">
+      #chart_div1 {
+        background-color: #e0e0a0;
+      }
+      #chart_div2 {
+        background-color: #c0c0a0;
+      }
+      </style>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawCharts);
+      function drawChart1() {
+        var data = new google.visualization.DataTable();
+        data.addRows(4);
+
+        data.addColumn('number', 'Label');
+        data.setValue(0, 0,  0);
+        data.setValue(1, 0,  5);
+        data.setValue(2, 0, 10);
+        data.setValue(3, 0, 15);
+
+        data.addColumn('number', 'Delta');
+        data.setValue(0, 1, 40);
+        data.setValue(1, 1, 45);
+        data.setValue(2, 1, 50);
+        data.setValue(3, 1, 55);
+
+        data.addColumn('number', 'Second');
+        data.setValue(0, 2,  85);
+        data.setValue(1, 2,  90);
+        data.setValue(2, 2,  95);
+        data.setValue(3, 2, 100);
+
+        var chart1 = new google.visualization.Gauge(document.getElementById('chart_div1'));
+        var options = {
+          width: 600, height: 450, 
+          greenFrom: 0, greenTo: 30, 
+          redFrom: 90, redTo: 100, 
+          yellowFrom:70, yellowTo: 90, 
+          minorTicks: 5};
+        chart1.draw(data, options);
+      }
+
+      function drawChart2() {
+        var data = new google.visualization.DataTable();
+        data.addRows(1);
+
+        data.addColumn('number', '11211');
+        data.setValue(0, 0,  0);
+        data.addColumn('number', '11212');
+        data.setValue(0, 1,  20);
+        data.addColumn('number', '11213');
+        data.setValue(0, 2,  40);
+        data.addColumn('number', '11214');
+        data.setValue(0, 3,  60);
+        data.addColumn('number', '11215');
+        data.setValue(0, 4,  80);
+        data.addColumn('number', '11216');
+        data.setValue(0, 5, 100);
+
+        var chart2 = new google.visualization.Gauge(document.getElementById('chart_div2'));
+        var options = {
+          
+          width: 600, height: 400, 
+          greenFrom: 0, greenTo: 30, // greenColor: '#206020',
+          redFrom: 90, redTo: 100, // redColor: '#ff4040',
+          yellowFrom:30, yellowTo: 90, // yellowColor: '#e0e000',
+          minorTicks: 5}
+        chart2.draw(data, options);
+      }
+    function drawCharts() {
+      drawChart1();
+      drawChart2();
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id='chart_div1'></div>
+    <div id='chart_div2'></div>
+  </body>
+</html>

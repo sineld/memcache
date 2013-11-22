@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="sample.css" />
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawAllCharts);
+      var hitOptions = {
+          width: 150, height: 150, 
+          greenFrom: 80, greenTo: 100, 
+          yellowFrom: 50, yellowTo: 80, 
+          redFrom: 0, redTo: 20,
+          majorTicks: ['00', 20, 40, 60, 80, 100],
+          minorTicks: 4};
+      
+      var useOptions = {
+          width: 150, height: 150, 
+          greenFrom: 50, greenTo: 80, 
+          yellowFrom: 80, yellowTo: 95, 
+          redFrom: 95, redTo: 100, 
+          majorTicks: ['00', 20, 40, 60, 80, 100],
+          minorTicks: 4};
+
+      function randomInt() {
+        x = Math.random() * 101.0 - 0.5; // Give equal likelihood to 0 and 100
+        return Math.round(x);
+      }
+      
+      function drawChart(index, col) {
+        var data = new google.visualization.DataTable();
+        data.addRows(1);
+        data.addColumn('number', col +'%');
+        data.setValue(0, 0,  randomInt());
+        id = 'main-server' + index + '-' + col;
+        var chart = new google.visualization.Gauge(document.getElementById(id));
+        optionsName = col + 'Options';
+        chart.draw(data, window[optionsName]);
+      }
+      
+      function drawAllCharts() {
+        for (i = 1 ; i <= 4 ; i++) {
+          drawChart(i, 'use');
+          drawChart(i, 'hit');
+        }
+      }
+      </script>
+    </head>
+
+  <body>
+   <div id="header">
+     <h1><a href="http://php.net/memcached">Memcache</a></h1>
+     </div>
+    <table id="mainServers" border="5px"'>
+      <thead>
+        <col align="center" />
+        <col align="center" />
+        <col />
+        <col align="right" />
+        <col id="mainUse" />
+        <col id="mainHit" />
+        <col />
+        </thead>
+      <tbody>
+        <tr class="headerRow">
+          <th>Host</th>
+          <th>Version</th>
+          <th>Start/Uptime</th>
+          <th>Size</th>
+          <th>Use%</th>
+          <th>Hit%</th>
+          <th>Operations</th>
+          </tr>
+        <tr class="serverRow">
+          <td>127.0.0.1:11211</td>
+          <td>1.4.5</td>
+          <td>2011-10-05 14:58:00<br />1 hour and 5 minutes</td>
+          <td>64 MiB</td>
+          <td><div id="main-server1-use" class="server-use"></div></td>
+          <td><div id="main-server1-hit"></div></td>
+          <td><a href="flush">Flush</a></td>
+          </tr>
+        <tr class="serverRow">
+          <td>127.0.0.1:11212</td>
+          <td>1.4.5</td>
+          <td>2011-10-05 14:58:00<br />1 hour and 5 minutes</td>
+          <td>64 MiB</td>
+          <td><div id="main-server2-use" class="server-use"></div></td>
+          <td><div id="main-server2-hit"></div></td>
+          <td><a href="flush">Flush</a></td>
+          </tr>
+        <tr class="serverRow">
+          <td>127.0.0.1:11213</td>
+          <td>1.4.5</td>
+          <td>2011-10-05 14:58:00<br />1 hour and 5 minutes</td>
+          <td>1 GiB</td>
+          <td><div id="main-server3-use" class="server-use"></div></td>
+          <td><div id="main-server3-hit"></div></td>
+          <td><a href="flush">Flush</a></td>
+          </tr>
+        <tr class="serverRow">
+          <td>127.0.0.1:11214</td>
+          <td>1.4.5</td>
+          <td>2011-10-05 14:58:00<br />1 hour and 5 minutes</td>
+          <td>256 MiB</td>
+          <td><div id="main-server4-use" class="server-use"></div></td>
+          <td><div id="main-server4-hit"></div></td>
+          <td><a href="flush">Flush</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </body>
+  </html>

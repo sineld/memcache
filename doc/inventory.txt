@@ -1,0 +1,105 @@
+Inventory of features in memcache.php
+
+Common header:
+  memcache -> http://pecl.php.net/package/memcache
+  author -> (blog address)
+  
+================================================================================
+OP = 1
+------
+(home), ?op=1
+  Description   Overview of the host lists and aggregate stats
+  
+  Refresh Data -> &op=(current op)
+    Update the information and graphs
+  View Host Stats -> &op=1
+    Return to home page
+  Variables -> &op=2
+    List of slabs per server with a few stats
+    
+  General Cache Information
+    PHP version on host running the UI
+    Memcached hosts:  array of (host):(port) bin definitions -> &singleout=(bin id)
+    Total Memcache Cache: xxx.x MiBytes
+    
+  Memcache Server Information
+    (host):(port)
+    Flush this server -> &op=6&server=(bin id)
+    Start time = (value)
+    Uptime = (value)
+    Memcached Server Version = (value)
+    Used Cache Size = (xxx.x KiBytes)
+    Total Cache Siez = (xx.x MiBytes)
+  (repeat for all bins)
+    
+  Host Status Diagrams
+    Cache usage
+      Pie chart with percentages
+      Free: xxx.x MiBytes (xx.x%)
+      Used: xxx.x KiBytes (x.x%)
+    Hits & misses
+      Bar chart for hits and misses
+      Hits: x (x.x%)
+      Misses: xx (xx.x%)
+      
+  Cache information
+    Current items\(total\) = (value\(total value\))
+    Hits = (value)
+    Misses = (value)
+    Request rate (hits, misses) = (value) requests/second
+    Hit Rate = (value) requests/second
+    Miss Rate = (value) requests/second
+    Set Rate = (value) requests/second
+  
+&singleout=(bin id)
+  Same as home, but list limited to 1 bin
+  Additional in the General Cache Information: \(all servers\) -> \?
+  
+================================================================================
+OP = 2
+------
+
+?op=2
+  Description: List of slabs per server with a few stats
+  
+  Bin(n)
+    Host:port
+    (Slab id) -> &op=2&server=(bin id)&dumpslab=(slab id) 
+    slab id, 
+      item count 
+      age
+      evicted Y/N
+    (repeat for all slabs on bin)
+  (repeat for all bins)
+  
+   
+?&op=2&server=(bin id)&dumplab=(slab id)
+  Same as ?op=2 except for selected slab id
+  
+  (slab id)
+  Item count: (value)
+  Age: (value)
+  Evicted: (Yes|No)
+  Items: item
+    (key) -> &op=4&server=(bin id)&key=(base64_encode(urlencode(key))
+    (repeat for all keys in slab)
+
+================================================================================
+OP = 4
+------
+    
+&op=4&server=(bin id)&key=(base64_encode(urlencode(key))
+  Description:  Value display
+  
+  Server: (host:port)
+  Key: (value) flag: (flag value) Size: xx.x KiBytes
+  Value: (value)
+  Delete: -> &op=5&server=(bin id)&key=(base64_encode(urlencode(key))
+
+  Remarque: ne valide pas l'existence de la clef, se contente de la décoder de l'URL
+================================================================================
+OP = 5
+------
+  
+&op=5&server=(bin id)&key=(base64_encode(urlencode(key))  
+  Deleting (key): DELETED|NOT FOUND

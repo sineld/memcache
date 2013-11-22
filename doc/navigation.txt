@@ -1,0 +1,14 @@
+Identification/authentification
+	UI
+		affichage formulaire
+		soumission formulaire
+		notification d'échec
+		notification de succès
+	Code
+		lecture config (memcache_ui.local.php)
+		contrôle d'id/auth
+
+Tableau de bord
+	Instantané
+	Historique
+

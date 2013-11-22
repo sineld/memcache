@@ -1,0 +1,15 @@
+Possible alerts
+
+- bins in a cluster are not matched in size
+- clock deviation within servers (and with the client) outside some limit
+- inconsistent builds between servers
+- variation on connection and answer delay
+- non-zero eviction rate 
+- inconsistent slab factors between bins
+- multiple uses of same bin in monitor config
+- rusage_* increase on some servers outside normal variations
+- inconsistent uptimes
+- optimizations: different slabs factor simulation shows less memory use than current
+
+Suggestions on
+	http://code.google.com/p/memcached/wiki/NewServerMaint

@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+body {
+  margin: 0;
+}
+
+* {
+  font-family: Helv, Helvetica, sans-serif;
+}
+
+#header {
+  background-color: silver;
+  box-shadow: 0 0.1em 0.5em gray50;
+  color: white;
+  padding: 0.2em 0.5em;
+  text-decoration: none;
+  text-shadow: 0 0 0.2em orange;  
+}
+
+#header a {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+#mainServers {
+  box-shadow: 0 0.2em 0.5em gray50;
+  margin: 0.5em auto;
+  /* width: 100% */
+}
+
+#mainServers td,
+#mainServers th {
+  padding: 0.1em 0.5em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#mainServers tr.serverRow {
+  height: 100px;
+}
+
+#mainServers col#mainHit,
+#mainServers col#mainUse {
+  width: 100px;
+}
