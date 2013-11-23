@@ -33,9 +33,11 @@ if (is_readable($local)) {
 
 if (!defined('ADMIN_USERNAME')) {
   define('ADMIN_USERNAME', 'memcache');
+  $_SERVER['PHP_AUTH_USER'] = ADMIN_USERNAME;
 }
 if (!defined('ADMIN_PASSWORD')) {
   define('ADMIN_PASSWORD', 'password');
+  $_SERVER['PHP_AUTH_PW'] = ADMIN_PASSWORD;
 }
 if (empty($MEMCACHE_SERVERS)) {
   $MEMCACHE_SERVERS[] = '127.0.0.1:11211'; // add more as an array
